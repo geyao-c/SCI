@@ -47,12 +47,15 @@ def main():
     model = model.cuda()
 
     model.eval()
+    count = 1
     with torch.no_grad():
         for _, (input, image_name) in enumerate(test_queue):
             input = Variable(input, volatile=True).cuda()
             image_name = image_name[0].split('\\')[-1].split('.')[0]
             i, r = model(input)
-            u_name = '%s.png' % (image_name)
+            # u_name = '%s.png' % (image_name)
+            u_name = "{}.png".format(str(count))
+            count += 1
             print('processing {}'.format(u_name))
             u_path = save_path + '/' + u_name
             save_images(r, u_path)
