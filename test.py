@@ -36,6 +36,7 @@ def save_images(tensor, path):
 
 def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(device)
     model = Finetunemodel(args.model)
     model = model.to(device)
     model.eval()
